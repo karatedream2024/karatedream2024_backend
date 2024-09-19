@@ -11,7 +11,7 @@ const registrationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dob: {
+    dob: {  
         type: Date,
         required: true
     },
