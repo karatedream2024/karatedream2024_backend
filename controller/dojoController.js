@@ -16,9 +16,13 @@ export const addDojo = async (req, res) => {
 
 // Get all dojos
 export const getAllDojos = async (req, res) => {
+    const { limit, page } = req.params;
+    console.log("dojo")
     try {
-        const dojos = await DojoModel.find();
-        res.status(200).json(dojos);
+        const count = await DojoModel.find().countDocuments();
+        const dojos = await DojoModel.find().skip( parseInt(limit)  * ( parseInt(page)  - 1)).limit(parseInt(limit) );
+       
+        res.status(200).json({status:"success", data:dojos, count:count});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

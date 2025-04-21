@@ -33,8 +33,8 @@ const __dirname = path.dirname(__filename);
 
 app.get("/getimage", (req, res) => {
   const imagePath = path.join(__dirname, "./photo/img/image1.jpg");
-  res.sendFile(imagePath);
-});
+  res.sendFile(imagePath)
+});     
 
 app.use('/api/user', userRouter)
 app.use('/api/atten', attendenceRouter)

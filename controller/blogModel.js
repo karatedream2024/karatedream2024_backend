@@ -13,9 +13,11 @@ export const addBlog = async (req, res) => {
 
 // Get all blog posts
 export const getAllBlogs = async (req, res) => {
+    const { limit, page } = req.params;
     try {
-        const blogs = await BlogModel.find();
-        res.status(200).json(blogs);
+        const count = await BlogModel.find().countDocuments();
+        const blogs = await BlogModel.find().skip( parseInt(limit)  * ( parseInt(page)  - 1)).limit(parseInt(limit) );
+        res.status(200).json({status:"success", data:blogs, count:count});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -4,7 +4,7 @@ import { addEvent, deleteEvent, findEventById, updateEvent, getAllEvents } from 
 const eventrouter = express.Router();
 
 eventrouter.post('/addevent', addEvent);             // Create a new event
-eventrouter.get('/getevent', getAllEvents);          // Get all events
+eventrouter.get('/getevent/:limit/:page/:eventtype', getAllEvents);          // Get all events
 eventrouter.delete('/deleteevent/:id', deleteEvent);    // Delete an event by ID
 // eventrouter.get('/events/:id', findEventById);     // Find an event by ID
 eventrouter.put('/updateevent/:id', updateEvent);       // Update an event by ID

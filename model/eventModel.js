@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 // Define the Event schema
 const eventSchema = new mongoose.Schema({
+    eventType:{
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true
@@ -28,7 +32,6 @@ const eventSchema = new mongoose.Schema({
         required: true
     },
     prizes: {
-        
             first_winner: {
                 type: String,
                 required: true

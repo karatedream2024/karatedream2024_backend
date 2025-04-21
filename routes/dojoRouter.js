@@ -4,7 +4,7 @@ import { addDojo, getAllDojos, getDojoById, updateDojo, deleteDojo } from '../co
 const dojorouter = express.Router()
 
 dojorouter.post('/adddojo', addDojo);              // Create a new dojo
-dojorouter.get('/getdojo', getAllDojos);           // Get all dojos
+dojorouter.get('/getdojo/:limit/:page', getAllDojos);           // Get all dojos
 dojorouter.get('/onedojo/:id', getDojoById);       // Get a dojo by ID
 dojorouter.put('/updatedojo/:id', updateDojo);        // Update a dojo by ID
 dojorouter.delete('/deletedojo/:id', deleteDojo);     // Delete a dojo by ID

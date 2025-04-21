@@ -6,7 +6,7 @@ export const addEvent = async (req, res) => {
         const newEvent = new EventModel(req.body);
         const savedEvent = await newEvent.save();
         res.status(201).json(savedEvent);
-    } catch (error) {
+    } catch (error) { 
         res.status(400).json({ error: error.message });
     }
 };
@@ -55,9 +55,21 @@ export const updateEvent = async (req, res) => {
 
 
 export const getAllEvents = async (req, res) => {
+    const { limit, page, eventtype } = req.params;
+    
+    let l = parseInt(limit)
+    let p = parseFloat(page)
+    // console.log(limit, page, eventtype)
+    // const limit = 1
+    // const page = 1
+    // const eventtype = "completed"
+    console.log(limit, page, eventtype )
     try {
-        const events = await EventModel.find(); // Retrieves all events from the collection
-        res.status(200).json(events);
+        const Count = await EventModel.find({eventType: eventtype}).countDocuments();
+        const events = await EventModel.find({eventType: eventtype}).skip( parseInt(l)  * ( parseInt(p)  - 1)).limit(parseInt(l) ); // Retrieves all events from the collection
+        // const events = await EventModel.find(filter).skip(limit * (pageNum - 1)).limit(limit); // Retrieves all events from the collection
+        console.log(events, 'events')
+        res.status(200).json({status:"success", data:events, count:Count});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
