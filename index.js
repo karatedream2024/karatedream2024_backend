@@ -14,6 +14,7 @@ import eventrouter from './routes/eventRouter.js';
 import studentRouter from './routes/studentRouter.js';
 import registerRouter from './routes/registerRouter.js';
 import tourRouter from './routes/upcomingRouter.js';
+import testcalender from './routes/testRouter.js';
 
 
 const app = express();
@@ -46,6 +47,7 @@ app.use('/api/event', eventrouter)
 app.use('/api/student', studentRouter)
 app.use('/api/register', registerRouter)
 app.use('/api/tour', tourRouter)
+app.use('/api/testcalender', testcalender)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
